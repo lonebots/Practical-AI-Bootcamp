@@ -1,5 +1,8 @@
 import tensorflow as tf
 
+#import tensorflow_text
+import tensorflow_text as tf_text
+
 directory_url = 'https://storage.googleapis.com/download.tensorflow.org/data/illiad/'
 file_names = ['cowper.txt', 'derby.txt', 'butler.txt']
 
@@ -9,3 +12,6 @@ file_paths = [
 ]
 
 dataset = tf.data.TextLineDataset(file_paths)
+
+# data aumentation on input pipeline using tensorflow_text
+dataset = dataset.map(lambda string : tf_text.normalize_utf8(string)).repeat()
